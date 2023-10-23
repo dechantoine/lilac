@@ -20,7 +20,9 @@ from ..signal import TextEmbeddingSignal, get_signal_by_type
 from ..splitters.chunk_splitter import TextChunk
 from ..utils import chunks
 
-EMBEDDING_SORT_PRIORITIES = ['gte-small', 'gte-base', 'openai', 'sbert']
+EMBEDDING_SORT_PRIORITIES = ['gte-small', 'gte-base',
+                             'palm2-gecko-multilingual', 'palm2-gecko',
+                             'openai', 'sbert']
 
 EmbeddingId = Union[StrictStr, TextEmbeddingSignal]
 
