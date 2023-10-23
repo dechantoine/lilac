@@ -49,7 +49,8 @@ uvicorn = { extras = ["standard"], version = "^0.23.2" }
 
 # LLM providers.
 cohere = { version = "^3.7.0", optional = true }
-google-generativeai = { version = "^0.1.0", optional = true }   # PaLM / MakerSuite.
+google-generativeai = { version = "^0.1.0", optional = true }
+google-cloud-aiplatform = { version = "^1.35.0", optional = true } # PaLM / MakerSuite.
 openai = { version = "^0.27.8", optional = true }
 sentence-transformers = { version = "^2.2.2", optional = true } # SBERT on-device embeddings.
 
@@ -85,6 +86,7 @@ umap-learn = { version = "^0.5.4" }
 all = [
   "cohere",
   "google-generativeai",
+  "google-cloud-aiplatform",
   "openai",
   "sentence-transformers",
   "email-reply-parser",
@@ -103,6 +105,7 @@ all = [
 embeddings = [
   "cohere",
   "google-generativeai",
+  "google-cloud-aiplatform",
   "openai",
   "sentence-transformers",
 ]
@@ -135,6 +138,8 @@ gte = ["sentence-transformers"]
 sbert = ["sentence-transformers"]
 cohere = ["cohere"]
 palm = ["google-generativeai"]
+palm2-gecko = ["google-cloud-aiplatform"]
+palm2-gecko-multilingual = ["google-cloud-aiplatform"]
 openai = ["openai"]
 
 [tool.poetry.group.dev] # Deps for development.
