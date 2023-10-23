@@ -4,7 +4,14 @@
 set -e
 
 # Activate the current py virtual env.
-source $(poetry env info --path)/bin/activate
+case "$OSTYPE" in
+  linux*)
+    echo "OSTYPE : LINUX"
+    source $(poetry env info --path)/bin/activate ;;
+  msys*)
+    echo "OSTYPE : WINDOWS"
+    source $(poetry env info --path)/Scripts/activate ;;
+esac
 
 echo "Linting python with ruff..."
 ruff lilac
