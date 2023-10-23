@@ -3,6 +3,16 @@
 # Fail if any of the commands below fail.
 set -e
 
+# Activate the current py virtual env.
+case "$OSTYPE" in
+  linux*)
+    echo "OSTYPE : LINUX"
+    source $(poetry env info --path)/bin/activate ;;
+  msys*)
+    echo "OSTYPE : WINDOWS"
+    source $(poetry env info --path)/Scripts/activate ;;
+esac
+
 echo "Testing python using non-github test script..."
 
 PYTEST_MARKS=""
