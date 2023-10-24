@@ -2,7 +2,9 @@
 from ..embeddings.cohere import Cohere
 from ..embeddings.gte import GTEBase, GTESmall
 from ..embeddings.openai import OpenAI
-from ..embeddings.palm import PaLM
+#from ..embeddings.palm import PaLM
+from ..embeddings.gecko import PaLMGecko
+from ..embeddings.gecko_multilingual import PaLMGeckoMulti
 from ..embeddings.sbert import SBERT
 from ..signal import register_signal
 from .cluster_hdbscan import ClusterHDBScan
@@ -33,6 +35,8 @@ def register_default_signals() -> None:
   register_signal(Cohere)
   register_signal(SBERT)
   register_signal(OpenAI)
-  register_signal(PaLM)
+  #register_signal(PaLM)
+  register_signal(PaLMGecko)
+  register_signal(PaLMGeckoMulti)
   register_signal(GTESmall)
   register_signal(GTEBase)
