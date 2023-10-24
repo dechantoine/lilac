@@ -213,8 +213,13 @@ def generate_examples(description: str) -> list[str]:
                       'Please install it with `pip install openai`.')
 
   openai.api_key = env('OPENAI_API_KEY')
+  openai.api_type = env('OPENAI_TYPE')
+  openai.api_base = env('OPENAI_BASE')
+  openai.api_version = env('OPENAI_VERSION')
+  engine = env("OPENAI_ENGINE_CHAT")
   completion = openai.ChatCompletion.create(
-    model='gpt-3.5-turbo-0613',
+    engine=engine,
+    model='gpt-4-0613',
     functions=[Examples.openai_schema],
     messages=[
       {

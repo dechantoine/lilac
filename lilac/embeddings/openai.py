@@ -41,7 +41,7 @@ class OpenAI(TextEmbeddingSignal):
     api_type = env('OPENAI_TYPE')
     api_base = env('OPENAI_BASE')
     api_version = env('OPENAI_VERSION')
-    api_engine = env("OPENAI_ENGINE")
+    api_engine = env("OPENAI_ENGINE_EMBEDDING")
     if not api_key:
       raise ValueError('`OPENAI_API_KEY` environment variable not set.')
     try:
