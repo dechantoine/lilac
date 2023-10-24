@@ -14,8 +14,8 @@ from .embedding import compute_split_embeddings
 if TYPE_CHECKING:
   import openai
 
-NUM_PARALLEL_REQUESTS = 10
-OPENAI_BATCH_SIZE = 128
+NUM_PARALLEL_REQUESTS = 1
+OPENAI_BATCH_SIZE = 16
 EMBEDDING_MODEL = 'text-embedding-ada-002'
 
 
@@ -38,11 +38,19 @@ class OpenAI(TextEmbeddingSignal):
   @override
   def setup(self) -> None:
     api_key = env('OPENAI_API_KEY')
+    api_type = env('OPENAI_TYPE')
+    api_base = env('OPENAI_BASE')
+    api_version = env('OPENAI_VERSION')
+    api_engine = env("OPENAI_ENGINE")
     if not api_key:
       raise ValueError('`OPENAI_API_KEY` environment variable not set.')
     try:
       import openai
       openai.api_key = api_key
+      openai.api_type = api_type
+      openai.api_base = api_base
+      openai.api_version = api_version
+      self._api_engine = api_engine
       self._model = openai.Embedding
     except ImportError:
       raise ImportError('Could not import the "openai" python package. '
@@ -59,7 +67,7 @@ class OpenAI(TextEmbeddingSignal):
       # See https://github.com/search?q=repo%3Aopenai%2Fopenai-python+replace+newlines&type=code
       texts = [text.replace('\n', ' ') for text in texts]
 
-      response: Any = self._model.create(input=texts, model=EMBEDDING_MODEL)
+      response: Any = self._model.create(input=texts, model=EMBEDDING_MODEL, engine=self._api_engine)
       return [np.array(embedding['embedding'], dtype=np.float32) for embedding in response['data']]
 
     docs = cast(Iterable[str], docs)
