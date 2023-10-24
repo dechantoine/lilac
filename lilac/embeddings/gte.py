@@ -1,4 +1,4 @@
-"""Gegeral Text Embeddings (GTE) model. Open-source model, designed to run on device."""
+"""General Text Embeddings (GTE) model. Open-source model, designed to run on device."""
 from typing import ClassVar, Iterable, cast
 
 from typing_extensions import override
@@ -27,14 +27,14 @@ _OPTIMAL_BATCH_SIZES: dict[str, dict[str, int]] = {
 
 
 class GTESmall(TextEmbeddingSignal):
-  """Computes Gegeral Text Embeddings (GTE).
+  """Computes General Text Embeddings (GTE).
 
   <br>This embedding runs on-device. See the [model card](https://huggingface.co/thenlper/gte-small)
   for details.
   """
 
   name: ClassVar[str] = 'gte-small'
-  display_name: ClassVar[str] = 'Gegeral Text Embeddings (small)'
+  display_name: ClassVar[str] = 'General Text Embeddings (small)'
 
   _model_name = GTE_SMALL
 
@@ -49,12 +49,12 @@ class GTESmall(TextEmbeddingSignal):
 
 
 class GTEBase(GTESmall):
-  """Computes Gegeral Text Embeddings (GTE).
+  """Computes General Text Embeddings (GTE).
 
   <br>This embedding runs on-device. See the [model card](https://huggingface.co/thenlper/gte-base)
   for details.
   """
   name: ClassVar[str] = 'gte-base'
-  display_name: ClassVar[str] = 'Gegeral Text Embeddings (base)'
+  display_name: ClassVar[str] = 'General Text Embeddings (base)'
 
   _model_name = GTE_BASE
