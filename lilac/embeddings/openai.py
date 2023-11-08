@@ -42,7 +42,7 @@ class OpenAI(TextEmbeddingSignal):
     api_type = env('OPENAI_API_TYPE')
     api_base = env('OPENAI_API_BASE')
     api_version = env('OPENAI_API_VERSION')
-    api_engine = env("OPENAI_API_ENGINE_EMBEDDING")
+    api_engine = env('OPENAI_API_ENGINE_EMBEDDING')
     if not api_key:
       raise ValueError('`OPENAI_API_KEY` environment variable not set.')
     try:
@@ -96,5 +96,7 @@ class OpenAI(TextEmbeddingSignal):
       AZURE_OPENAI_BATCH_SIZE if self._api_engine else API_OPENAI_BATCH_SIZE,
       embed_fn,
       split_fn,
-      num_parallel_requests=AZURE_NUM_PARALLEL_REQUESTS if self._api_engine else API_NUM_PARALLEL_REQUESTS
+      num_parallel_requests=(AZURE_NUM_PARALLEL_REQUESTS
+                             if self._api_engine
+                             else API_NUM_PARALLEL_REQUESTS)
     )
